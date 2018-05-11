@@ -1,0 +1,25 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test
+    ports:
+      - "8080:80"
+    links:
+      - mysql
+    volumes:
+      - .:/var/www/html
+      - ./.docker/php.ini:/usr/local/etc/php/php.ini
+    env_file:
+      - ./.docker/.env
+
+  mysql:
+    image: mysql:5.6
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql
+    env_file:
+      - ./.docker/.env
