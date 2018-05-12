@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: test
+    image: php7xdebug
     ports:
       - "8080:80"
     links:
